@@ -1,0 +1,89 @@
+﻿<?xml version="1.0" encoding="UTF-8" ?>
+<customDisplay:CallbackPopup
+    x:Class="SampleDisplayActionSheet.CustomControls.BaseDialog"
+    xmlns="http://xamarin.com/schemas/2014/forms"
+    xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+    xmlns:animations="clr-namespace:Rg.Plugins.Popup.Animations;assembly=Rg.Plugins.Popup"
+    xmlns:customDisplay="clr-namespace:SampleDisplayActionSheet.CustomControls"
+    xmlns:tk="http://xamarin.com/schemas/2020/toolkit">
+    <customDisplay:CallbackPopup.Animation>
+        <animations:FadeAnimation
+            DurationIn="200"
+            DurationOut="300"
+            EasingIn="SinOut"
+            EasingOut="SinIn"
+            HasBackgroundAnimation="True" />
+    </customDisplay:CallbackPopup.Animation>
+    <Frame
+        Margin="10,0"
+        Padding="10"
+        BackgroundColor="{AppThemeBinding Light=#FFF,
+                                          Dark=#000,
+                                          Default=#FFF}"
+        CornerRadius="10"
+        HasShadow="False"
+        HorizontalOptions="Fill"
+        VerticalOptions="Center">
+        <Grid RowDefinitions="auto,auto,*">
+            <Label
+                x:Name="TitleLabel"
+                FontAttributes="Bold"
+                TextColor="{AppThemeBinding Dark=#FFF,
+                                            Light=#000,
+                                            Default=#000}"
+                VerticalOptions="Center" />
+            <Label
+                x:Name="DescriptionLabel"
+                Grid.Row="1"
+                FontSize="Body"
+                Opacity="0.6"
+                TextColor="{AppThemeBinding Dark=#FFF,
+                                            Light=#000,
+                                            Default=#000}"
+                VerticalOptions="Center" />
+            <ScrollView Grid.Row="2">
+                <CollectionView
+                    x:Name="list"
+                    ChildAdded="list_ChildAdded"
+                    HeightRequest="1"
+                    SelectionChanged="list_SelectionChanged"
+                    SelectionMode="Single">
+                    <CollectionView.ItemTemplate>
+                        <DataTemplate>
+                            <Grid>
+                                <Frame
+                                    tk:CornerRadiusEffect.CornerRadius="10"
+                                    tk:TouchEffect.AnimationDuration="200"
+                                    tk:TouchEffect.NativeAnimation="True"
+                                    tk:TouchEffect.NativeAnimationColor="#CCD0DC"
+                                    tk:TouchEffect.PressedScale="0.85"
+                                    BackgroundColor="Transparent"
+                                    CornerRadius="10"
+                                    HasShadow="False">
+                                    <Label
+                                        FontSize="Body"
+                                        Opacity="0.6"
+                                        Text="{Binding .}"
+                                        TextColor="{AppThemeBinding Dark=#FFF,
+                                                                    Light=#000,
+                                                                    Default=#000}" />
+                                </Frame>
+                                <!--  Remove selectable style of xamarin  -->
+                                <VisualStateManager.VisualStateGroups>
+                                    <VisualStateGroup Name="CommonStates">
+                                        <VisualState Name="Selected">
+                                            <VisualState.Setters>
+                                                <Setter Property="BackgroundColor" Value="{AppThemeBinding Dark=#000, Light=#FFF, Default=#FFF}" />
+                                            </VisualState.Setters>
+                                        </VisualState>
+                                    </VisualStateGroup>
+                                </VisualStateManager.VisualStateGroups>
+                            </Grid>
+                        </DataTemplate>
+                    </CollectionView.ItemTemplate>
+                </CollectionView>
+            </ScrollView>
+
+        </Grid>
+    </Frame>
+</customDisplay:CallbackPopup>

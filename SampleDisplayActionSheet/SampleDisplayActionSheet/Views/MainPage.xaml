@@ -1,0 +1,31 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage
+    x:Class="SampleDisplayActionSheet.Views.MainPage"
+    xmlns="http://xamarin.com/schemas/2014/forms"
+    xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+    Title="{Binding Title}"
+    BackgroundColor="#FFF"
+    NavigationPage.HasNavigationBar="False">
+
+    <StackLayout HorizontalOptions="CenterAndExpand">
+        <Label
+            Margin="0,50"
+            FontSize="Title"
+            HorizontalOptions="Center"
+            Text="Sample of Display action sheet" />
+        <Grid Margin="0,100,0,0" ColumnDefinitions="*,*">
+            <Button Command="{Binding ShowNormalDisplayAction}" Text="Normal" />
+            <Button
+                Grid.Column="1"
+                Command="{Binding ShowCustomDisplayAction}"
+                Text="Custom" />
+        </Grid>
+        <Label
+            FontAttributes="Bold"
+            FontSize="Body"
+            HorizontalTextAlignment="Center"
+            Text="{Binding SelectedText}"
+            TextColor="Black" />
+    </StackLayout>
+
+</ContentPage>
